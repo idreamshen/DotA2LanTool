@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DotA2ToolForm));
             this.gbServer = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -42,6 +43,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.labelSServerTVPort = new System.Windows.Forms.Label();
             this.gbServerGame = new System.Windows.Forms.GroupBox();
+            this.cbSServerIP = new System.Windows.Forms.ComboBox();
             this.cbSGameMap = new System.Windows.Forms.ComboBox();
             this.cbSGameMode = new System.Windows.Forms.ComboBox();
             this.cbSGameDifficulty = new System.Windows.Forms.ComboBox();
@@ -78,7 +80,6 @@
             this.labelCPlayerName = new System.Windows.Forms.Label();
             this.labelCServerPort = new System.Windows.Forms.Label();
             this.labelCServerTVPort = new System.Windows.Forms.Label();
-            this.cbSServerIP = new System.Windows.Forms.ComboBox();
             this.lblVersion = new System.Windows.Forms.Label();
             this.gbServer.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -245,6 +246,14 @@
             this.gbServerGame.TabIndex = 1;
             this.gbServerGame.TabStop = false;
             this.gbServerGame.Text = "地图设置";
+            // 
+            // cbSServerIP
+            // 
+            this.cbSServerIP.FormattingEnabled = true;
+            this.cbSServerIP.Location = new System.Drawing.Point(94, 32);
+            this.cbSServerIP.Name = "cbSServerIP";
+            this.cbSServerIP.Size = new System.Drawing.Size(100, 20);
+            this.cbSServerIP.TabIndex = 21;
             // 
             // cbSGameMap
             // 
@@ -549,6 +558,7 @@
             this.bnCGameStart.TabIndex = 8;
             this.bnCGameStart.Text = "启动游戏";
             this.bnCGameStart.UseVisualStyleBackColor = true;
+            this.bnCGameStart.Click += new System.EventHandler(this.bnCGameStart_Click);
             // 
             // labelCServerIP
             // 
@@ -586,14 +596,6 @@
             this.labelCServerTVPort.TabIndex = 6;
             this.labelCServerTVPort.Text = "观战端口*";
             // 
-            // cbSServerIP
-            // 
-            this.cbSServerIP.FormattingEnabled = true;
-            this.cbSServerIP.Location = new System.Drawing.Point(94, 32);
-            this.cbSServerIP.Name = "cbSServerIP";
-            this.cbSServerIP.Size = new System.Drawing.Size(100, 20);
-            this.cbSServerIP.TabIndex = 21;
-            // 
             // lblVersion
             // 
             this.lblVersion.Location = new System.Drawing.Point(493, 479);
@@ -612,10 +614,12 @@
             this.Controls.Add(this.gbClient);
             this.Controls.Add(this.gbServer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DotA2ToolForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MangoDotA2LanTool";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DotA2ToolForm_FormClosing);
             this.gbServer.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -16,21 +17,51 @@ namespace MangoDotA2Tool
 {
     public partial class DotA2ToolForm : Form
     {
-        //声明写INI文件的API函数 
-        [DllImport("kernel32")]
-        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
-
-        //声明读INI文件的API函数 
-        [DllImport("kernel32")]
-        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+        // 初始化配置文件实例
+        IniFile ini = new IniFile(Application.StartupPath + "\\config.ini");
 
         public DotA2ToolForm()
         {
             InitializeComponent();
 
-            lblVersion.Text = lblVersion.Text + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            // 显示版本号
+            lblVersion.Text = "版本: " + "20140430";
+
+            // 初始化默认页面
             initDotA2ToolForm();
-            setDotA2Path();
+
+            // 读取ini文件中的dota路径，如果不存在，则弹出选择路径对话框
+            if (!File.Exists(ini.lPath + "\\dota.exe"))
+            {
+                setDotA2Path();
+            }
+
+            // 读取配置文件
+            string sServerPort = ini.sServerPort;
+            if(sServerPort != "")
+            {
+                tbCServerPort.Text = sServerPort;
+            }
+
+            string cServerIP = ini.cServerIP;
+            if (cServerIP != "")
+            {
+                tbCServerIP.Text = cServerIP;
+            }
+
+            string cServerPort = ini.cServerPort;
+            if (cServerPort != "")
+            {
+                tbCServerPort.Text = cServerPort;
+            }
+
+            string cPlayerName = ini.cPlayerName;
+            if (cPlayerName != "")
+            {
+                tbCPlayerName.Text = cPlayerName;
+            }
+
+         
         }
 
         private void initDotA2ToolForm()
@@ -47,7 +78,6 @@ namespace MangoDotA2Tool
                 }
             }
             cbSServerIP.SelectedIndex = 0;
-
 
             //地图文件
             string[] cbItemGameMap = new string[] {"默认", "秋季", "冬季", "新年"};
@@ -124,22 +154,54 @@ namespace MangoDotA2Tool
             System.Windows.Forms.ToolTip ToolTipSourceTVAutorecord = new System.Windows.Forms.ToolTip();
             ToolTipSourceTVAutorecord.SetToolTip(this.cbSSourceTVAutorecord, "如果开启,会占用服务器额外的内存!");
 
-            
-
         }
 
-        private bool setDotA2Path()
+        // 设置dota路径
+        private void setDotA2Path()
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "DotA2主程序|dota.exe";
             fileDialog.RestoreDirectory = true;
             if(fileDialog.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(Path.GetDirectoryName(fileDialog.FileName));
-                return true;
+                // 将路径保存至配置文件
+                ini.lPath = Path.GetDirectoryName(fileDialog.FileName);
             }
-            return false;
+            else
+            {
+                MessageBox.Show("无法设置DotA2游戏路径");
+            }
         }
 
+        // 窗体关闭时保存设置到配置文件
+        private void DotA2ToolForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ini.sServerPort = tbSServerPort.Text;
+            ini.cServerIP = tbCServerIP.Text;
+            ini.cServerPort = tbCServerPort.Text;
+            ini.cPlayerName = tbCPlayerName.Text;
+        }
+
+        private void bnCGameStart_Click(object sender, EventArgs e)
+        {
+
+            ini.rPlayerName = tbCPlayerName.Text;
+            ini.rServerIPNSNet = tbCServerIP.Text;
+            CopyFolder cpREVPath = new CopyFolder(Application.StartupPath + "\\REVPatch", ini.lPath);
+            runDota(ini.lPath + "\\revLoader.exe");
+
+        }
+
+        // 启动dota目录中的revLoader.exe
+        private void runDota(string path)
+        {
+            string workingDir = Path.GetDirectoryName(path);
+
+            Process dotaProcess = new Process();
+            dotaProcess.StartInfo.UseShellExecute = false;
+            dotaProcess.StartInfo.FileName = path;
+            dotaProcess.StartInfo.WorkingDirectory = workingDir;
+            dotaProcess.Start();
+        }
     }
 }
