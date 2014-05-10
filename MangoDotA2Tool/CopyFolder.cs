@@ -24,7 +24,15 @@ namespace MangoDotA2Tool
             {
                 string fileName = Path.GetFileName(file);
                 string destFile = Path.Combine(destFolder, fileName);
-                File.Copy(file, destFile, true);
+                try
+                {
+                    File.Copy(file, destFile, true);
+                }
+                catch
+                {
+                    // 不抛出任何异常,用来忽略文件正在被使用的问题
+                }
+                
             }
             string[] folders = Directory.GetDirectories(sourceFolder);
             foreach (string folder in folders)
