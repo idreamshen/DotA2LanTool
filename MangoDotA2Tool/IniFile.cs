@@ -115,7 +115,7 @@ namespace MangoDotA2Tool
         {
             set
             {
-                WritePrivateProfileString("steamclient", "PlayerName", value, Path.GetDirectoryName(path) + "\\REVPatch\\rev.ini");
+                WritePrivateProfileString("steamclient", "PlayerName", value, Path.GetDirectoryName(path) + "\\REVClientPatch\\rev.ini");
             }
             get
             {

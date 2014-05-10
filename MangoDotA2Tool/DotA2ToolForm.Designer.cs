@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DotA2ToolForm));
             this.gbServer = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSServerHost = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbSSourceTVAutorecord = new System.Windows.Forms.ComboBox();
             this.cbSSourceTVDelay = new System.Windows.Forms.ComboBox();
@@ -65,17 +65,17 @@
             this.label7 = new System.Windows.Forms.Label();
             this.gbClient = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.bnCJoinTeamBad = new System.Windows.Forms.Button();
-            this.bnCJoinTeamTV = new System.Windows.Forms.Button();
-            this.bnCJoinTeamGood = new System.Windows.Forms.Button();
-            this.bnCJoinTeamSpectator = new System.Windows.Forms.Button();
+            this.btnCJoinTeamBad = new System.Windows.Forms.Button();
+            this.btnCJoinTeamTV = new System.Windows.Forms.Button();
+            this.btnCJoinTeamGood = new System.Windows.Forms.Button();
+            this.btnCJoinTeamSpectator = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.bnCJoinServer = new System.Windows.Forms.Button();
+            this.btnCJoinServer = new System.Windows.Forms.Button();
             this.tbCServerIP = new System.Windows.Forms.TextBox();
             this.tbCServerPort = new System.Windows.Forms.TextBox();
             this.tbCServerTVPort = new System.Windows.Forms.TextBox();
             this.tbCPlayerName = new System.Windows.Forms.TextBox();
-            this.bnCGameStart = new System.Windows.Forms.Button();
+            this.btnCGameStart = new System.Windows.Forms.Button();
             this.labelCServerIP = new System.Windows.Forms.Label();
             this.labelCPlayerName = new System.Windows.Forms.Label();
             this.labelCServerPort = new System.Windows.Forms.Label();
@@ -91,7 +91,7 @@
             // 
             // gbServer
             // 
-            this.gbServer.Controls.Add(this.button1);
+            this.gbServer.Controls.Add(this.btnSServerHost);
             this.gbServer.Controls.Add(this.groupBox1);
             this.gbServer.Controls.Add(this.gbServerGame);
             this.gbServer.Location = new System.Drawing.Point(12, 12);
@@ -101,14 +101,15 @@
             this.gbServer.TabStop = false;
             this.gbServer.Text = "局域网服务器设置";
             // 
-            // button1
+            // btnSServerHost
             // 
-            this.button1.Location = new System.Drawing.Point(0, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(606, 34);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "建立服务器";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSServerHost.Location = new System.Drawing.Point(0, 226);
+            this.btnSServerHost.Name = "btnSServerHost";
+            this.btnSServerHost.Size = new System.Drawing.Size(606, 34);
+            this.btnSServerHost.TabIndex = 3;
+            this.btnSServerHost.Text = "建立服务器";
+            this.btnSServerHost.UseVisualStyleBackColor = true;
+            this.btnSServerHost.Click += new System.EventHandler(this.btnSServerHost_Click);
             // 
             // groupBox1
             // 
@@ -438,10 +439,10 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.bnCJoinTeamBad);
-            this.groupBox3.Controls.Add(this.bnCJoinTeamTV);
-            this.groupBox3.Controls.Add(this.bnCJoinTeamGood);
-            this.groupBox3.Controls.Add(this.bnCJoinTeamSpectator);
+            this.groupBox3.Controls.Add(this.btnCJoinTeamBad);
+            this.groupBox3.Controls.Add(this.btnCJoinTeamTV);
+            this.groupBox3.Controls.Add(this.btnCJoinTeamGood);
+            this.groupBox3.Controls.Add(this.btnCJoinTeamSpectator);
             this.groupBox3.Location = new System.Drawing.Point(399, 25);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 144);
@@ -449,50 +450,50 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "快捷按钮";
             // 
-            // bnCJoinTeamBad
+            // btnCJoinTeamBad
             // 
-            this.bnCJoinTeamBad.Location = new System.Drawing.Point(103, 31);
-            this.bnCJoinTeamBad.Name = "bnCJoinTeamBad";
-            this.bnCJoinTeamBad.Size = new System.Drawing.Size(89, 34);
-            this.bnCJoinTeamBad.TabIndex = 11;
-            this.bnCJoinTeamBad.Text = "加入夜魇";
-            this.bnCJoinTeamBad.UseVisualStyleBackColor = true;
+            this.btnCJoinTeamBad.Location = new System.Drawing.Point(103, 31);
+            this.btnCJoinTeamBad.Name = "btnCJoinTeamBad";
+            this.btnCJoinTeamBad.Size = new System.Drawing.Size(89, 34);
+            this.btnCJoinTeamBad.TabIndex = 11;
+            this.btnCJoinTeamBad.Text = "加入夜魇";
+            this.btnCJoinTeamBad.UseVisualStyleBackColor = true;
             // 
-            // bnCJoinTeamTV
+            // btnCJoinTeamTV
             // 
-            this.bnCJoinTeamTV.Location = new System.Drawing.Point(103, 86);
-            this.bnCJoinTeamTV.Name = "bnCJoinTeamTV";
-            this.bnCJoinTeamTV.Size = new System.Drawing.Size(89, 34);
-            this.bnCJoinTeamTV.TabIndex = 13;
-            this.bnCJoinTeamTV.Text = "加入观战";
-            this.bnCJoinTeamTV.UseVisualStyleBackColor = true;
+            this.btnCJoinTeamTV.Location = new System.Drawing.Point(103, 86);
+            this.btnCJoinTeamTV.Name = "btnCJoinTeamTV";
+            this.btnCJoinTeamTV.Size = new System.Drawing.Size(89, 34);
+            this.btnCJoinTeamTV.TabIndex = 13;
+            this.btnCJoinTeamTV.Text = "加入观战";
+            this.btnCJoinTeamTV.UseVisualStyleBackColor = true;
             // 
-            // bnCJoinTeamGood
+            // btnCJoinTeamGood
             // 
-            this.bnCJoinTeamGood.Location = new System.Drawing.Point(8, 31);
-            this.bnCJoinTeamGood.Name = "bnCJoinTeamGood";
-            this.bnCJoinTeamGood.Size = new System.Drawing.Size(89, 34);
-            this.bnCJoinTeamGood.TabIndex = 10;
-            this.bnCJoinTeamGood.Text = "加入天辉";
-            this.bnCJoinTeamGood.UseVisualStyleBackColor = true;
+            this.btnCJoinTeamGood.Location = new System.Drawing.Point(8, 31);
+            this.btnCJoinTeamGood.Name = "btnCJoinTeamGood";
+            this.btnCJoinTeamGood.Size = new System.Drawing.Size(89, 34);
+            this.btnCJoinTeamGood.TabIndex = 10;
+            this.btnCJoinTeamGood.Text = "加入天辉";
+            this.btnCJoinTeamGood.UseVisualStyleBackColor = true;
             // 
-            // bnCJoinTeamSpectator
+            // btnCJoinTeamSpectator
             // 
-            this.bnCJoinTeamSpectator.Location = new System.Drawing.Point(8, 86);
-            this.bnCJoinTeamSpectator.Name = "bnCJoinTeamSpectator";
-            this.bnCJoinTeamSpectator.Size = new System.Drawing.Size(89, 34);
-            this.bnCJoinTeamSpectator.TabIndex = 12;
-            this.bnCJoinTeamSpectator.Text = "加入裁判";
-            this.bnCJoinTeamSpectator.UseVisualStyleBackColor = true;
+            this.btnCJoinTeamSpectator.Location = new System.Drawing.Point(8, 86);
+            this.btnCJoinTeamSpectator.Name = "btnCJoinTeamSpectator";
+            this.btnCJoinTeamSpectator.Size = new System.Drawing.Size(89, 34);
+            this.btnCJoinTeamSpectator.TabIndex = 12;
+            this.btnCJoinTeamSpectator.Text = "加入裁判";
+            this.btnCJoinTeamSpectator.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.bnCJoinServer);
+            this.groupBox2.Controls.Add(this.btnCJoinServer);
             this.groupBox2.Controls.Add(this.tbCServerIP);
             this.groupBox2.Controls.Add(this.tbCServerPort);
             this.groupBox2.Controls.Add(this.tbCServerTVPort);
             this.groupBox2.Controls.Add(this.tbCPlayerName);
-            this.groupBox2.Controls.Add(this.bnCGameStart);
+            this.groupBox2.Controls.Add(this.btnCGameStart);
             this.groupBox2.Controls.Add(this.labelCServerIP);
             this.groupBox2.Controls.Add(this.labelCPlayerName);
             this.groupBox2.Controls.Add(this.labelCServerPort);
@@ -504,14 +505,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "基本设置";
             // 
-            // bnCJoinServer
+            // btnCJoinServer
             // 
-            this.bnCJoinServer.Location = new System.Drawing.Point(216, 24);
-            this.bnCJoinServer.Name = "bnCJoinServer";
-            this.bnCJoinServer.Size = new System.Drawing.Size(154, 45);
-            this.bnCJoinServer.TabIndex = 9;
-            this.bnCJoinServer.Text = "加入服务器";
-            this.bnCJoinServer.UseVisualStyleBackColor = true;
+            this.btnCJoinServer.Location = new System.Drawing.Point(216, 24);
+            this.btnCJoinServer.Name = "btnCJoinServer";
+            this.btnCJoinServer.Size = new System.Drawing.Size(154, 45);
+            this.btnCJoinServer.TabIndex = 9;
+            this.btnCJoinServer.Text = "加入服务器";
+            this.btnCJoinServer.UseVisualStyleBackColor = true;
             // 
             // tbCServerIP
             // 
@@ -550,15 +551,15 @@
             this.tbCPlayerName.Text = "Mango";
             this.tbCPlayerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // bnCGameStart
+            // btnCGameStart
             // 
-            this.bnCGameStart.Location = new System.Drawing.Point(216, 81);
-            this.bnCGameStart.Name = "bnCGameStart";
-            this.bnCGameStart.Size = new System.Drawing.Size(154, 45);
-            this.bnCGameStart.TabIndex = 8;
-            this.bnCGameStart.Text = "启动游戏";
-            this.bnCGameStart.UseVisualStyleBackColor = true;
-            this.bnCGameStart.Click += new System.EventHandler(this.bnCGameStart_Click);
+            this.btnCGameStart.Location = new System.Drawing.Point(216, 81);
+            this.btnCGameStart.Name = "btnCGameStart";
+            this.btnCGameStart.Size = new System.Drawing.Size(154, 45);
+            this.btnCGameStart.TabIndex = 8;
+            this.btnCGameStart.Text = "启动游戏";
+            this.btnCGameStart.UseVisualStyleBackColor = true;
+            this.btnCGameStart.Click += new System.EventHandler(this.btnCGameStart_Click);
             // 
             // labelCServerIP
             // 
@@ -638,12 +639,12 @@
         private System.Windows.Forms.GroupBox gbServer;
         private System.Windows.Forms.GroupBox gbClient;
         private System.Windows.Forms.GroupBox gbServerGame;
-        private System.Windows.Forms.Button bnCJoinTeamTV;
-        private System.Windows.Forms.Button bnCJoinTeamSpectator;
-        private System.Windows.Forms.Button bnCJoinTeamBad;
-        private System.Windows.Forms.Button bnCJoinTeamGood;
-        private System.Windows.Forms.Button bnCJoinServer;
-        private System.Windows.Forms.Button bnCGameStart;
+        private System.Windows.Forms.Button btnCJoinTeamTV;
+        private System.Windows.Forms.Button btnCJoinTeamSpectator;
+        private System.Windows.Forms.Button btnCJoinTeamBad;
+        private System.Windows.Forms.Button btnCJoinTeamGood;
+        private System.Windows.Forms.Button btnCJoinServer;
+        private System.Windows.Forms.Button btnCGameStart;
         private System.Windows.Forms.Label labelCPlayerName;
         private System.Windows.Forms.Label labelCServerTVPort;
         private System.Windows.Forms.Label labelCServerPort;
@@ -658,7 +659,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbSourceTVPort;
         private System.Windows.Forms.Label labelSServerTVPort;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSServerHost;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label9;

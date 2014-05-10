@@ -34,5 +34,6 @@ namespace MangoDotA2Tool
                 Copy(folder, dest);
             }
         }
+
     }
 }
