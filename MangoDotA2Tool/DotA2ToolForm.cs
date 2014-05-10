@@ -25,7 +25,7 @@ namespace MangoDotA2Tool
             InitializeComponent();
 
             // 显示版本号
-            lblVersion.Text = "版本: " + "20140430";
+            lblVersion.Text = "版本: " + "20140510";
 
             // 初始化默认页面
             initDotA2ToolForm();
