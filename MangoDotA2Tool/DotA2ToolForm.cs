@@ -25,7 +25,7 @@ namespace MangoDotA2Tool
             InitializeComponent();
 
             // 显示版本号
-            lblVersion.Text = "版本: " + "20140510";
+            lblVersion.Text = "版本: " + "20140713";
 
             // 初始化默认页面
             initDotA2ToolForm();
@@ -67,7 +67,9 @@ namespace MangoDotA2Tool
         private void initDotA2ToolForm()
         {
             // 修复中文输入法
+            /*
             tbCPlayerName.ImeMode = ImeMode.On;
+            */
 
             // 服务器地址
             string hostName = Dns.GetHostName();
@@ -186,13 +188,14 @@ namespace MangoDotA2Tool
             
         }
 
+        // 启动游戏按钮
         private void btnCGameStart_Click(object sender, EventArgs e)
         {
             //
             ini.rPlayerName = tbCPlayerName.Text;
 
             ini.rServerIPNSNet = tbCServerIP.Text;
-            CopyFolder cpREVClientPath = new CopyFolder(Application.StartupPath + "\\REVClientPatch", ini.lPath);
+            CopyFolder cpREVClientPath = new CopyFolder(Application.StartupPath + "\\REVEmu", ini.lPath);
             runDota(ini.lPath + "\\revLoader.exe");
         }
 
@@ -212,15 +215,14 @@ namespace MangoDotA2Tool
         private void btnSServerHost_Click(object sender, EventArgs e)
         {
             initServerCfg();
-            CopyFolder cpREVServerPath = new CopyFolder(Application.StartupPath + "\\REVServerPatch", ini.lPath);
+            CopyFolder cpREVServerPath = new CopyFolder(Application.StartupPath + "\\REVEmu", ini.lPath);
             runSrcds(ini.lPath + "\\srcds.exe");
-
         }
 
         // 修改srcds的server.cfg配置文件
         private void initServerCfg()
         {
-            FileStream fsServerCfg = new FileStream(Application.StartupPath + "\\REVServerPatch\\dota\\cfg\\server.cfg", FileMode.OpenOrCreate);
+            FileStream fsServerCfg = new FileStream(Application.StartupPath + "\\REVEmu\\dota\\cfg\\server.cfg", FileMode.OpenOrCreate);
             StreamWriter swServerCfg = new StreamWriter(fsServerCfg);
 
             swServerCfg.WriteLine("hostname DotA2");
@@ -228,6 +230,7 @@ namespace MangoDotA2Tool
             swServerCfg.WriteLine("sv_lan 1");
             swServerCfg.WriteLine("tv_secret_code 0");
             swServerCfg.WriteLine("sv_hibernate_when_empty 0");
+            swServerCfg.WriteLine("dota_start_ai_game 1");
 
             switch (cbSGameMode.SelectedIndex)
             {
@@ -238,12 +241,12 @@ namespace MangoDotA2Tool
 
                 // 中路模式
                 case 1:
-                    swServerCfg.WriteLine("dota_force_gamemode 2");
+                    swServerCfg.WriteLine("dota_force_gamemode 11");
                     break;
 
                 // OMG模式
                 case 2:
-                    swServerCfg.WriteLine("dota_force_gamemode 3");
+                    swServerCfg.WriteLine("dota_force_gamemode 18");
                     break;
 
                 // 默认全阵营模式
@@ -267,7 +270,7 @@ namespace MangoDotA2Tool
             Process dotaProcess = new Process();
             dotaProcess.StartInfo.UseShellExecute = false;
             dotaProcess.StartInfo.FileName = path;
-            dotaProcess.StartInfo.Arguments = "-console -game dota";
+            dotaProcess.StartInfo.Arguments = "-console -game dota -insecure";
             dotaProcess.StartInfo.WorkingDirectory = workingDir;
             dotaProcess.Start();
         }

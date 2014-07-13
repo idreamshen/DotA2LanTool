@@ -84,8 +84,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="20140430041138721_easyicon_net_128.ico" />
-    <Content Include="20140430041149900_easyicon_net_32.ico" />
     <Content Include="20140430041429159_easyicon_net_72.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
