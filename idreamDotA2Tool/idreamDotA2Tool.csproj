@@ -35,7 +35,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>20140430041429159_easyicon_net_72.ico</ApplicationIcon>
+    <ApplicationIcon>www.ico.la_15_128X128_1405255181.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="20140430041429159_easyicon_net_72.ico" />
+    <Content Include="www.ico.la_15_128X128_1405255181.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

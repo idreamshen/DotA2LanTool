@@ -115,7 +115,7 @@ namespace idreamDotA2Tool
         {
             set
             {
-                WritePrivateProfileString("steamclient", "PlayerName", value, Path.GetDirectoryName(path) + "\\REVClientPatch\\rev.ini");
+                WritePrivateProfileString("steamclient", "PlayerName", value, Path.GetDirectoryName(path) + "\\REVEmu\\rev.ini");
             }
             get
             {
@@ -128,7 +128,7 @@ namespace idreamDotA2Tool
         {
             set
             {
-                WritePrivateProfileString("GameServerNSNet", "ServerIPNSNet", value, Path.GetDirectoryName(path) + "\\REVPatch\\rev.ini");
+                WritePrivateProfileString("GameServerNSNet", "ServerIPNSNet", value, Path.GetDirectoryName(path) + "\\REVEmu\\rev.ini");
             }
             get
             {

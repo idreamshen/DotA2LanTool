@@ -68,7 +68,7 @@
             this.btnCJoinTeamBad = new System.Windows.Forms.Button();
             this.btnCJoinTeamTV = new System.Windows.Forms.Button();
             this.btnCJoinTeamGood = new System.Windows.Forms.Button();
-            this.btnCJoinTeamSpectator = new System.Windows.Forms.Button();
+            this.btnCAddBot = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnCJoinServer = new System.Windows.Forms.Button();
             this.tbCServerIP = new System.Windows.Forms.TextBox();
@@ -81,6 +81,7 @@
             this.labelCServerPort = new System.Windows.Forms.Label();
             this.labelCServerTVPort = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.btnAbout = new System.Windows.Forms.Button();
             this.gbServer.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbServerGame.SuspendLayout();
@@ -199,6 +200,7 @@
             // 
             // tbSourceTVPort
             // 
+            this.tbSourceTVPort.Enabled = false;
             this.tbSourceTVPort.Location = new System.Drawing.Point(89, 63);
             this.tbSourceTVPort.Name = "tbSourceTVPort";
             this.tbSourceTVPort.Size = new System.Drawing.Size(100, 21);
@@ -273,7 +275,6 @@
             // cbSGameMode
             // 
             this.cbSGameMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSGameMode.Enabled = false;
             this.cbSGameMode.FormattingEnabled = true;
             this.cbSGameMode.Location = new System.Drawing.Point(94, 124);
             this.cbSGameMode.Name = "cbSGameMode";
@@ -283,7 +284,6 @@
             // cbSGameDifficulty
             // 
             this.cbSGameDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSGameDifficulty.Enabled = false;
             this.cbSGameDifficulty.FormattingEnabled = true;
             this.cbSGameDifficulty.Location = new System.Drawing.Point(94, 154);
             this.cbSGameDifficulty.Name = "cbSGameDifficulty";
@@ -293,7 +293,6 @@
             // cbSMaxPlayers
             // 
             this.cbSMaxPlayers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSMaxPlayers.Enabled = false;
             this.cbSMaxPlayers.FormattingEnabled = true;
             this.cbSMaxPlayers.Location = new System.Drawing.Point(268, 156);
             this.cbSMaxPlayers.Name = "cbSMaxPlayers";
@@ -313,17 +312,16 @@
             // cbSWaitForPlayer
             // 
             this.cbSWaitForPlayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSWaitForPlayer.Enabled = false;
             this.cbSWaitForPlayer.FormattingEnabled = true;
             this.cbSWaitForPlayer.Location = new System.Drawing.Point(268, 63);
             this.cbSWaitForPlayer.Name = "cbSWaitForPlayer";
             this.cbSWaitForPlayer.Size = new System.Drawing.Size(100, 20);
             this.cbSWaitForPlayer.TabIndex = 16;
+            this.cbSWaitForPlayer.TextChanged += new System.EventHandler(this.cbSWaitForPlayer_TextChanged);
             // 
             // cbSWaitForPlayerCount
             // 
             this.cbSWaitForPlayerCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSWaitForPlayerCount.Enabled = false;
             this.cbSWaitForPlayerCount.FormattingEnabled = true;
             this.cbSWaitForPlayerCount.Location = new System.Drawing.Point(268, 94);
             this.cbSWaitForPlayerCount.Name = "cbSWaitForPlayerCount";
@@ -333,7 +331,6 @@
             // cbSWaitForPlayerTimeout
             // 
             this.cbSWaitForPlayerTimeout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSWaitForPlayerTimeout.Enabled = false;
             this.cbSWaitForPlayerTimeout.FormattingEnabled = true;
             this.cbSWaitForPlayerTimeout.Location = new System.Drawing.Point(268, 125);
             this.cbSWaitForPlayerTimeout.Name = "cbSWaitForPlayerTimeout";
@@ -454,7 +451,7 @@
             this.groupBox3.Controls.Add(this.btnCJoinTeamBad);
             this.groupBox3.Controls.Add(this.btnCJoinTeamTV);
             this.groupBox3.Controls.Add(this.btnCJoinTeamGood);
-            this.groupBox3.Controls.Add(this.btnCJoinTeamSpectator);
+            this.groupBox3.Controls.Add(this.btnCAddBot);
             this.groupBox3.Location = new System.Drawing.Point(399, 25);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 144);
@@ -464,13 +461,13 @@
             // 
             // btnCJoinTeamBad
             // 
-            this.btnCJoinTeamBad.Enabled = false;
             this.btnCJoinTeamBad.Location = new System.Drawing.Point(103, 31);
             this.btnCJoinTeamBad.Name = "btnCJoinTeamBad";
             this.btnCJoinTeamBad.Size = new System.Drawing.Size(89, 34);
             this.btnCJoinTeamBad.TabIndex = 11;
             this.btnCJoinTeamBad.Text = "加入夜魇";
             this.btnCJoinTeamBad.UseVisualStyleBackColor = true;
+            this.btnCJoinTeamBad.Click += new System.EventHandler(this.btnCJoinTeamBad_Click);
             // 
             // btnCJoinTeamTV
             // 
@@ -484,23 +481,23 @@
             // 
             // btnCJoinTeamGood
             // 
-            this.btnCJoinTeamGood.Enabled = false;
             this.btnCJoinTeamGood.Location = new System.Drawing.Point(8, 31);
             this.btnCJoinTeamGood.Name = "btnCJoinTeamGood";
             this.btnCJoinTeamGood.Size = new System.Drawing.Size(89, 34);
             this.btnCJoinTeamGood.TabIndex = 10;
             this.btnCJoinTeamGood.Text = "加入天辉";
             this.btnCJoinTeamGood.UseVisualStyleBackColor = true;
+            this.btnCJoinTeamGood.Click += new System.EventHandler(this.btnCJoinTeamGood_Click);
             // 
-            // btnCJoinTeamSpectator
+            // btnCAddBot
             // 
-            this.btnCJoinTeamSpectator.Enabled = false;
-            this.btnCJoinTeamSpectator.Location = new System.Drawing.Point(8, 86);
-            this.btnCJoinTeamSpectator.Name = "btnCJoinTeamSpectator";
-            this.btnCJoinTeamSpectator.Size = new System.Drawing.Size(89, 34);
-            this.btnCJoinTeamSpectator.TabIndex = 12;
-            this.btnCJoinTeamSpectator.Text = "加入裁判";
-            this.btnCJoinTeamSpectator.UseVisualStyleBackColor = true;
+            this.btnCAddBot.Location = new System.Drawing.Point(8, 86);
+            this.btnCAddBot.Name = "btnCAddBot";
+            this.btnCAddBot.Size = new System.Drawing.Size(89, 34);
+            this.btnCAddBot.TabIndex = 12;
+            this.btnCAddBot.Text = "填充AI";
+            this.btnCAddBot.UseVisualStyleBackColor = true;
+            this.btnCAddBot.Click += new System.EventHandler(this.btnCAddBot_Click);
             // 
             // groupBox2
             // 
@@ -529,6 +526,7 @@
             this.btnCJoinServer.TabIndex = 9;
             this.btnCJoinServer.Text = "加入服务器";
             this.btnCJoinServer.UseVisualStyleBackColor = true;
+            this.btnCJoinServer.Click += new System.EventHandler(this.btnCJoinServer_Click);
             // 
             // tbCServerIP
             // 
@@ -551,6 +549,7 @@
             // 
             // tbCServerTVPort
             // 
+            this.tbCServerTVPort.Enabled = false;
             this.tbCServerTVPort.Location = new System.Drawing.Point(92, 78);
             this.tbCServerTVPort.Name = "tbCServerTVPort";
             this.tbCServerTVPort.Size = new System.Drawing.Size(100, 21);
@@ -564,7 +563,7 @@
             this.tbCPlayerName.Name = "tbCPlayerName";
             this.tbCPlayerName.Size = new System.Drawing.Size(100, 21);
             this.tbCPlayerName.TabIndex = 3;
-            this.tbCPlayerName.Text = "Mango";
+            this.tbCPlayerName.Text = "idream";
             this.tbCPlayerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnCGameStart
@@ -615,18 +614,29 @@
             // 
             // lblVersion
             // 
-            this.lblVersion.Location = new System.Drawing.Point(493, 479);
+            this.lblVersion.Location = new System.Drawing.Point(467, 479);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(124, 12);
             this.lblVersion.TabIndex = 2;
             this.lblVersion.Text = "版本: ";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // btnAbout
+            // 
+            this.btnAbout.Location = new System.Drawing.Point(596, 475);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(21, 21);
+            this.btnAbout.TabIndex = 3;
+            this.btnAbout.Text = "!";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
             // DotA2ToolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(630, 500);
+            this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.gbClient);
             this.Controls.Add(this.gbServer);
@@ -635,7 +645,7 @@
             this.MaximizeBox = false;
             this.Name = "DotA2ToolForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MangoDotA2LanTool";
+            this.Text = "idreamDotA2LanTool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DotA2ToolForm_FormClosing);
             this.gbServer.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -656,7 +666,7 @@
         private System.Windows.Forms.GroupBox gbClient;
         private System.Windows.Forms.GroupBox gbServerGame;
         private System.Windows.Forms.Button btnCJoinTeamTV;
-        private System.Windows.Forms.Button btnCJoinTeamSpectator;
+        private System.Windows.Forms.Button btnCAddBot;
         private System.Windows.Forms.Button btnCJoinTeamBad;
         private System.Windows.Forms.Button btnCJoinTeamGood;
         private System.Windows.Forms.Button btnCJoinServer;
@@ -704,6 +714,7 @@
         private System.Windows.Forms.ComboBox cbSMaxPlayers;
         private System.Windows.Forms.ComboBox cbSServerIP;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Button btnAbout;
     }
 }
 
