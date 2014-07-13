@@ -1,4 +1,4 @@
-﻿namespace MangoDotA2Tool
+﻿namespace idreamDotA2Tool
 {
     partial class DotA2ToolForm
     {
@@ -133,6 +133,7 @@
             // cbSSourceTVAutorecord
             // 
             this.cbSSourceTVAutorecord.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSSourceTVAutorecord.Enabled = false;
             this.cbSSourceTVAutorecord.FormattingEnabled = true;
             this.cbSSourceTVAutorecord.Location = new System.Drawing.Point(89, 157);
             this.cbSSourceTVAutorecord.Name = "cbSSourceTVAutorecord";
@@ -142,6 +143,7 @@
             // cbSSourceTVDelay
             // 
             this.cbSSourceTVDelay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSSourceTVDelay.Enabled = false;
             this.cbSSourceTVDelay.FormattingEnabled = true;
             this.cbSSourceTVDelay.Location = new System.Drawing.Point(89, 126);
             this.cbSSourceTVDelay.Name = "cbSSourceTVDelay";
@@ -151,6 +153,7 @@
             // cbSSourceTVMaxClients
             // 
             this.cbSSourceTVMaxClients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSSourceTVMaxClients.Enabled = false;
             this.cbSSourceTVMaxClients.FormattingEnabled = true;
             this.cbSSourceTVMaxClients.Location = new System.Drawing.Point(89, 95);
             this.cbSSourceTVMaxClients.Name = "cbSSourceTVMaxClients";
@@ -160,6 +163,7 @@
             // cbSSourceTV
             // 
             this.cbSSourceTV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSSourceTV.Enabled = false;
             this.cbSSourceTV.FormattingEnabled = true;
             this.cbSSourceTV.Location = new System.Drawing.Point(89, 32);
             this.cbSSourceTV.Name = "cbSSourceTV";
@@ -259,6 +263,7 @@
             // cbSGameMap
             // 
             this.cbSGameMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSGameMap.Enabled = false;
             this.cbSGameMap.FormattingEnabled = true;
             this.cbSGameMap.Location = new System.Drawing.Point(94, 94);
             this.cbSGameMap.Name = "cbSGameMap";
@@ -268,6 +273,7 @@
             // cbSGameMode
             // 
             this.cbSGameMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSGameMode.Enabled = false;
             this.cbSGameMode.FormattingEnabled = true;
             this.cbSGameMode.Location = new System.Drawing.Point(94, 124);
             this.cbSGameMode.Name = "cbSGameMode";
@@ -277,6 +283,7 @@
             // cbSGameDifficulty
             // 
             this.cbSGameDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSGameDifficulty.Enabled = false;
             this.cbSGameDifficulty.FormattingEnabled = true;
             this.cbSGameDifficulty.Location = new System.Drawing.Point(94, 154);
             this.cbSGameDifficulty.Name = "cbSGameDifficulty";
@@ -286,6 +293,7 @@
             // cbSMaxPlayers
             // 
             this.cbSMaxPlayers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSMaxPlayers.Enabled = false;
             this.cbSMaxPlayers.FormattingEnabled = true;
             this.cbSMaxPlayers.Location = new System.Drawing.Point(268, 156);
             this.cbSMaxPlayers.Name = "cbSMaxPlayers";
@@ -295,6 +303,7 @@
             // cbSBotGame
             // 
             this.cbSBotGame.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSBotGame.Enabled = false;
             this.cbSBotGame.FormattingEnabled = true;
             this.cbSBotGame.Location = new System.Drawing.Point(268, 32);
             this.cbSBotGame.Name = "cbSBotGame";
@@ -304,6 +313,7 @@
             // cbSWaitForPlayer
             // 
             this.cbSWaitForPlayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSWaitForPlayer.Enabled = false;
             this.cbSWaitForPlayer.FormattingEnabled = true;
             this.cbSWaitForPlayer.Location = new System.Drawing.Point(268, 63);
             this.cbSWaitForPlayer.Name = "cbSWaitForPlayer";
@@ -313,6 +323,7 @@
             // cbSWaitForPlayerCount
             // 
             this.cbSWaitForPlayerCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSWaitForPlayerCount.Enabled = false;
             this.cbSWaitForPlayerCount.FormattingEnabled = true;
             this.cbSWaitForPlayerCount.Location = new System.Drawing.Point(268, 94);
             this.cbSWaitForPlayerCount.Name = "cbSWaitForPlayerCount";
@@ -322,6 +333,7 @@
             // cbSWaitForPlayerTimeout
             // 
             this.cbSWaitForPlayerTimeout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSWaitForPlayerTimeout.Enabled = false;
             this.cbSWaitForPlayerTimeout.FormattingEnabled = true;
             this.cbSWaitForPlayerTimeout.Location = new System.Drawing.Point(268, 125);
             this.cbSWaitForPlayerTimeout.Name = "cbSWaitForPlayerTimeout";
@@ -452,6 +464,7 @@
             // 
             // btnCJoinTeamBad
             // 
+            this.btnCJoinTeamBad.Enabled = false;
             this.btnCJoinTeamBad.Location = new System.Drawing.Point(103, 31);
             this.btnCJoinTeamBad.Name = "btnCJoinTeamBad";
             this.btnCJoinTeamBad.Size = new System.Drawing.Size(89, 34);
@@ -461,6 +474,7 @@
             // 
             // btnCJoinTeamTV
             // 
+            this.btnCJoinTeamTV.Enabled = false;
             this.btnCJoinTeamTV.Location = new System.Drawing.Point(103, 86);
             this.btnCJoinTeamTV.Name = "btnCJoinTeamTV";
             this.btnCJoinTeamTV.Size = new System.Drawing.Size(89, 34);
@@ -470,6 +484,7 @@
             // 
             // btnCJoinTeamGood
             // 
+            this.btnCJoinTeamGood.Enabled = false;
             this.btnCJoinTeamGood.Location = new System.Drawing.Point(8, 31);
             this.btnCJoinTeamGood.Name = "btnCJoinTeamGood";
             this.btnCJoinTeamGood.Size = new System.Drawing.Size(89, 34);
@@ -479,6 +494,7 @@
             // 
             // btnCJoinTeamSpectator
             // 
+            this.btnCJoinTeamSpectator.Enabled = false;
             this.btnCJoinTeamSpectator.Location = new System.Drawing.Point(8, 86);
             this.btnCJoinTeamSpectator.Name = "btnCJoinTeamSpectator";
             this.btnCJoinTeamSpectator.Size = new System.Drawing.Size(89, 34);

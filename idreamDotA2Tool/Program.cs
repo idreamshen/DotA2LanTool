@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace MangoDotA2Tool
+namespace idreamDotA2Tool
 {
     static class Program
     {

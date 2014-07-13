@@ -1,4 +1,4 @@
-MangoDotA2LanTool
+idreamDotA2LanTool
 =================
 
 DotA2局域网小工具

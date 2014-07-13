@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 
 
-namespace MangoDotA2Tool
+namespace idreamDotA2Tool
 {
     
     class IniFile

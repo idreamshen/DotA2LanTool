@@ -7,8 +7,8 @@
     <ProjectGuid>{7E492D87-DA5A-40D7-B198-EDFC6A92B4D6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MangoDotA2Tool</RootNamespace>
-    <AssemblyName>MangoDotA2Tool</AssemblyName>
+    <RootNamespace>idreamDotA2Tool</RootNamespace>
+    <AssemblyName>idreamDotA2Tool</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -71,8 +71,10 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

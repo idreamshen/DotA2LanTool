@@ -13,7 +13,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace MangoDotA2Tool
+namespace idreamDotA2Tool
 {
     public partial class DotA2ToolForm : Form
     {
