@@ -535,8 +535,8 @@
             this.tbCServerIP.Name = "tbCServerIP";
             this.tbCServerIP.Size = new System.Drawing.Size(100, 21);
             this.tbCServerIP.TabIndex = 0;
-            this.tbCServerIP.Text = "127.0.0.1";
             this.tbCServerIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbCServerIP.TextChanged += new System.EventHandler(this.tbCServerIP_TextChanged);
             // 
             // tbCServerPort
             // 
@@ -546,6 +546,7 @@
             this.tbCServerPort.TabIndex = 1;
             this.tbCServerPort.Text = "27015";
             this.tbCServerPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbCServerPort.TextChanged += new System.EventHandler(this.tbCServerPort_TextChanged);
             // 
             // tbCServerTVPort
             // 

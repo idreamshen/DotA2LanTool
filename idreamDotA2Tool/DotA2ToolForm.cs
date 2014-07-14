@@ -87,13 +87,15 @@ namespace idreamDotA2Tool
             }
             cbSServerIP.SelectedIndex = 0;
 
+            tbCServerIP.Text = cbSServerIP.Text;
+
             // 地图文件
             string[] cbItemGameMap = new string[] {"默认", "秋季", "冬季", "新年"};
             cbSGameMap.Items.AddRange(cbItemGameMap);
             cbSGameMap.SelectedIndex = 0;
 
             // 地图模式
-            string[] cbItemGameMode = new string[] {"全阵营模式", "中路模式", "随机技能模式"};
+            string[] cbItemGameMode = new string[] {"全阵营模式", "中路模式", "随机技能模式", "队长模式"};
             cbSGameMode.Items.AddRange(cbItemGameMode);
             cbSGameMode.SelectedIndex = 0;
 
@@ -231,6 +233,13 @@ namespace idreamDotA2Tool
                     // 不抛出任何异常,用来忽略文件正在被使用的问题
                 }
 
+                File.Copy(ini.lPath + "\\dota\\cfg\\autoexec_Client.cfg", ini.lPath + "\\dota\\cfg\\autoexec.cfg", true);
+
+                FileStream fsConnectCfg = new FileStream(ini.lPath + "\\dota\\cfg\\connect.cfg", FileMode.OpenOrCreate);
+                StreamWriter swConnectCfg = new StreamWriter(fsConnectCfg);
+                swConnectCfg.WriteLine("connect " + tbCServerIP.Text + ":" + tbCServerPort.Text);
+                swConnectCfg.Close();
+
                 runDota(ini.lPath + "\\revLoader.exe");
             }
         }
@@ -268,6 +277,7 @@ namespace idreamDotA2Tool
                 {
                     // 不抛出任何异常,用来忽略文件正在被使用的问题
                 }
+                File.Delete(ini.lPath + "\\dota\\cfg\\autoexec.cfg");
                 runSrcds(ini.lPath + "\\revLoader.exe");
             }
         }
@@ -283,40 +293,8 @@ namespace idreamDotA2Tool
             swServerCfg.WriteLine("sv_lan 1");
             swServerCfg.WriteLine("tv_secret_code 0");
             swServerCfg.WriteLine("sv_hibernate_when_empty 0");
+
             
-            // 设置地图模式
-            switch (cbSGameMode.SelectedIndex)
-            {
-                // 全阵营模式
-                case 0:
-                    swServerCfg.WriteLine("dota_force_gamemode 1");
-                    break;
-
-                // 中路模式
-                case 1:
-                    swServerCfg.WriteLine("dota_force_gamemode 11");
-                    break;
-
-                // OMG模式
-                case 2:
-                    swServerCfg.WriteLine("dota_force_gamemode 18");
-                    break;
-
-                // 默认全阵营模式
-                default:
-                    swServerCfg.WriteLine("dota_force_gamemode 1");
-                    break;
-            }
-
-            // 设置是否机器人练习赛
-            if (cbSBotGame.Text == "是")
-            {
-                swServerCfg.WriteLine("dota_start_ai_game 1");
-            }
-            else
-            {
-                swServerCfg.WriteLine("dota_start_ai_game 0");
-            }
 
             // 判断是否开启等待玩家功能
             if (cbSWaitForPlayer.Text == "是")
@@ -356,6 +334,8 @@ namespace idreamDotA2Tool
                     swServerCfg.WriteLine("dota_bot_set_difficulty 4");
                     break;
             }
+
+            
             
             swServerCfg.WriteLine("sv_cheats 0");
             swServerCfg.Close();
@@ -369,7 +349,45 @@ namespace idreamDotA2Tool
             Process dotaProcess = new Process();
             dotaProcess.StartInfo.UseShellExecute = false;
             dotaProcess.StartInfo.FileName = path;
-            dotaProcess.StartInfo.Arguments = "-launch srcds.exe -console -game dota -ip " + cbSServerIP.Text + " -port " + tbSServerPort.Text + " +map dota +maxplayers " + cbSMaxPlayers.Text;
+
+            string dotaGameMode;
+            // 设置地图模式
+            switch (cbSGameMode.SelectedIndex)
+            {
+                // 全阵营模式
+                case 0:
+                    dotaGameMode = "1";
+                    break;
+                // 中路模式
+                case 1:
+                    dotaGameMode = "11";
+                    break;
+                // OMG模式
+                case 2:
+                    dotaGameMode = "18";
+                    break;
+                // 队长模式
+                case 3:
+                    dotaGameMode = "2";
+                    break;
+                // 默认全阵营模式
+                default:
+                    dotaGameMode = "1";
+                    break;
+            }
+
+            // 设置是否机器人练习赛
+            string aiGame;
+            if (cbSBotGame.Text == "是")
+            {
+                aiGame = "1";
+            }
+            else
+            {
+                aiGame = "0";
+            }
+
+            dotaProcess.StartInfo.Arguments = "-launch srcds.exe -console -game dota +sv_cheats 1 -ip " + cbSServerIP.Text + " -port " + tbSServerPort.Text + " +dota_start_ai_game " + aiGame + " +dota_force_gamemode " + dotaGameMode + " +map dota +maxplayers " + cbSMaxPlayers.Text;
             dotaProcess.StartInfo.WorkingDirectory = workingDir;
             dotaProcess.Start();
         }
@@ -391,10 +409,10 @@ namespace idreamDotA2Tool
         private void btnAbout_Click(object sender, EventArgs e)
         {
             MessageBox.Show("如有任何BUG请反馈。本工具严禁用于互联网，仅供局域网练习，转载请注明出处。\n\n" +
-                            "本工具开源链接\n" +
-                            "github.com/idreamshen/idreamDotA2LanTool\n\n" +
+                            "本工具在Github上开源，请自行搜索。\n\n" +
+                            //"github.com/idreamshen/idreamDotA2LanTool\n\n" +
                             "Mail: idream.shen@gmail.com\n" +
-                            "Wechat: idreamshen\n" +
+                            //"Wechat: idreamshen\n" +
                             "Website: idreamshen.com"
                            );
         }
@@ -429,15 +447,19 @@ namespace idreamDotA2Tool
             keybd_event(220, 0x2b, 0X0, 0);
             keybd_event(220, 0xab, 0X2, 0);
             System.Threading.Thread.Sleep(300);
+            SendKeys.Send("{F7}");
 
+            /*
             byte[] ch = (ASCIIEncoding.ASCII.GetBytes("connect " + tbCServerIP.Text + ":" + tbCServerPort.Text));
             for (int i = 0; i < ch.Length; i++)
             {
                 SendMessage(myIntPtr, WM_CHAR, ch[i], 0);
             }
             SendKeys.Send("{ENTER}");
+            */
+
             System.Threading.Thread.Sleep(300);
-            ch = (ASCIIEncoding.ASCII.GetBytes("hideconsole"));
+            byte[] ch = (ASCIIEncoding.ASCII.GetBytes("hideconsole"));
             for (int i = 0; i < ch.Length; i++)
             {
                 SendMessage(myIntPtr, WM_CHAR, ch[i], 0);
@@ -450,8 +472,10 @@ namespace idreamDotA2Tool
             IntPtr myIntPtr = FindWindow("Valve001", "DotA 2");
             ShowWindow(myIntPtr, SW_RESTORE);
             SetForegroundWindow(myIntPtr);
-            keybd_event(220, 0x2b, 0X0, 0);
-            keybd_event(220, 0xab, 0X2, 0);
+
+            keybd_event(121, 0x44, 0X0, 0);
+            keybd_event(121, 0xc4, 0X2, 0);
+            /*
             System.Threading.Thread.Sleep(300);
             byte[] ch = (ASCIIEncoding.ASCII.GetBytes("jointeam good"));
             for (int i = 0; i < ch.Length; i++)
@@ -466,6 +490,8 @@ namespace idreamDotA2Tool
                 SendMessage(myIntPtr, WM_CHAR, ch[i], 0);
             }
             SendKeys.Send("{ENTER}");
+            */
+
         }
 
         private void btnCJoinTeamBad_Click(object sender, EventArgs e)
@@ -473,8 +499,13 @@ namespace idreamDotA2Tool
             IntPtr myIntPtr = FindWindow("Valve001", "DotA 2");
             ShowWindow(myIntPtr, SW_RESTORE);
             SetForegroundWindow(myIntPtr);
-            keybd_event(220, 0x2b, 0X0, 0);
-            keybd_event(220, 0xab, 0X2, 0);
+            System.Threading.Thread.Sleep(300);
+            //SendKeys.Send("{F11}");
+
+            
+            keybd_event(122, 0x57, 0X0, 0);
+            keybd_event(122, 0xd7, 0X2, 0);
+            /*
             System.Threading.Thread.Sleep(300);
 
             byte[] ch = (ASCIIEncoding.ASCII.GetBytes("jointeam bad"));
@@ -490,6 +521,7 @@ namespace idreamDotA2Tool
                 SendMessage(myIntPtr, WM_CHAR, ch[i], 0);
             }
             SendKeys.Send("{ENTER}");
+             * */
         }
 
         private void btnCAddBot_Click(object sender, EventArgs e)
@@ -504,6 +536,26 @@ namespace idreamDotA2Tool
                 SendMessage(myIntPtr, WM_CHAR, ch[i], 0);
             }
             SendKeys.Send("{ENTER}");
+
+            myIntPtr = FindWindow("Valve001", "DotA 2");
+            ShowWindow(myIntPtr, SW_RESTORE);
+            SetForegroundWindow(myIntPtr);
+        }
+
+        private void tbCServerIP_TextChanged(object sender, EventArgs e)
+        {
+            FileStream fsConnectCfg = new FileStream(ini.lPath + "\\dota\\cfg\\connect.cfg", FileMode.OpenOrCreate);
+            StreamWriter swConnectCfg = new StreamWriter(fsConnectCfg);
+            swConnectCfg.WriteLine("connect " + tbCServerIP.Text + ":" + tbCServerPort.Text);
+            swConnectCfg.Close();
+        }
+
+        private void tbCServerPort_TextChanged(object sender, EventArgs e)
+        {
+            FileStream fsConnectCfg = new FileStream(ini.lPath + "\\dota\\cfg\\connect.cfg", FileMode.OpenOrCreate);
+            StreamWriter swConnectCfg = new StreamWriter(fsConnectCfg);
+            swConnectCfg.WriteLine("connect " + tbCServerIP.Text + ":" + tbCServerPort.Text);
+            swConnectCfg.Close();
         }
     }
 }
