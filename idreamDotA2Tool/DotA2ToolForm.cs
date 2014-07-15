@@ -292,7 +292,6 @@ namespace idreamDotA2Tool
             swServerCfg.WriteLine("sv_cheats 1");
             swServerCfg.WriteLine("sv_lan 1");
             swServerCfg.WriteLine("tv_secret_code 0");
-            swServerCfg.WriteLine("sv_hibernate_when_empty 0");
 
             // 判断是否开启等待玩家功能
             if (cbSWaitForPlayer.Text == "是")
