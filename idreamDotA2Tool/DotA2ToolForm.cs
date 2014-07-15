@@ -28,7 +28,7 @@ namespace idreamDotA2Tool
             InitializeComponent();
 
             // 显示版本号
-            lblVersion.Text = "版本: " + "20140714";
+            lblVersion.Text = "版本: " + "20140715";
 
             // 初始化默认页面
             initDotA2ToolForm();
@@ -136,9 +136,9 @@ namespace idreamDotA2Tool
             cbSMaxPlayers.SelectedIndex = 1;
 
             // 开启观战
-            string[] cbItemSourceTV = new string[] { "是", "否" };
+            string[] cbItemSourceTV = new string[] { "否", "是" };
             cbSSourceTV.Items.AddRange(cbItemSourceTV);
-            cbSSourceTV.SelectedIndex = 1;
+            cbSSourceTV.SelectedIndex = 0;
 
             // 观战上限
             string[] cbItemSourceTVMaxClients = new string[] { "32", "64", "128", "256" };
@@ -157,7 +157,7 @@ namespace idreamDotA2Tool
             ToolTipSourceTVDelay.SetToolTip(this.cbSSourceTVDelay, "单位\"秒\"");
 
             // 自动保存
-            string[] cbItemSourceTVAutorecord = new string[] { "是", "否" };
+            string[] cbItemSourceTVAutorecord = new string[] { "否", "是" };
             cbSSourceTVAutorecord.Items.AddRange(cbItemSourceTVAutorecord);
             cbSSourceTVAutorecord.SelectedIndex = 1;
 
@@ -222,7 +222,7 @@ namespace idreamDotA2Tool
             }
             else
             {
-                CopyFolder cpREVClientPath = new CopyFolder(Application.StartupPath + "\\REVEmu", ini.lPath);
+                CopyFolder cpREVClientPath = new CopyFolder(Application.StartupPath + "\\RtLabs", ini.lPath);
                 File.Delete(ini.lPath + "\\dota\\gameinfo.txt");
                 try
                 {
@@ -267,7 +267,7 @@ namespace idreamDotA2Tool
             }
             else
             {
-                CopyFolder cpREVServerPath = new CopyFolder(Application.StartupPath + "\\REVEmu", ini.lPath);
+                CopyFolder cpREVServerPath = new CopyFolder(Application.StartupPath + "\\RtLabs", ini.lPath);
                 File.Delete(ini.lPath + "\\dota\\gameinfo.txt");
                 try
                 {
@@ -285,7 +285,7 @@ namespace idreamDotA2Tool
         // 修改srcds的server.cfg配置文件
         private void initServerCfg()
         {
-            FileStream fsServerCfg = new FileStream(Application.StartupPath + "\\REVEmu\\dota\\cfg\\server.cfg", FileMode.OpenOrCreate);
+            FileStream fsServerCfg = new FileStream(Application.StartupPath + "\\RtLabs\\dota\\cfg\\server.cfg", FileMode.OpenOrCreate);
             StreamWriter swServerCfg = new StreamWriter(fsServerCfg);
 
             swServerCfg.WriteLine("hostname DotA2");
@@ -293,8 +293,6 @@ namespace idreamDotA2Tool
             swServerCfg.WriteLine("sv_lan 1");
             swServerCfg.WriteLine("tv_secret_code 0");
             swServerCfg.WriteLine("sv_hibernate_when_empty 0");
-
-            
 
             // 判断是否开启等待玩家功能
             if (cbSWaitForPlayer.Text == "是")
@@ -334,6 +332,8 @@ namespace idreamDotA2Tool
                     swServerCfg.WriteLine("dota_bot_set_difficulty 4");
                     break;
             }
+
+
 
             
             
@@ -387,7 +387,27 @@ namespace idreamDotA2Tool
                 aiGame = "0";
             }
 
-            dotaProcess.StartInfo.Arguments = "-launch srcds.exe -console -game dota +sv_cheats 1 -ip " + cbSServerIP.Text + " -port " + tbSServerPort.Text + " +dota_start_ai_game " + aiGame + " +dota_force_gamemode " + dotaGameMode + " +map dota +maxplayers " + cbSMaxPlayers.Text;
+            // 设置地图文件
+            string dotaMap;
+            switch (cbSGameMap.SelectedIndex)
+            {
+                case 0:
+                    dotaMap = "dota.bsp";
+                    break;
+                case 1:
+                    dotaMap = "dota_autumn.bsp";
+                    break;
+                case 2:
+                    dotaMap = "dota_winter.bsp";
+                    break;
+                case 3:
+                    dotaMap = "dota_newyear.bsp";
+                    break;
+                default:
+                    dotaMap = "dota.bsp";
+                    break;
+            }
+            dotaProcess.StartInfo.Arguments = "-launch srcds.exe -console -game dota +sv_cheats 1 +tv_secret_code 0 +tv_port " + tbSourceTVPort + " +tv_maxclients " + cbSMaxPlayers.Text + " +tv_delay " + cbSSourceTVDelay.Text + " +tv_autorecord " + cbSSourceTVAutorecord.SelectedIndex + " +tv_enable " + cbSSourceTV.SelectedIndex + " -ip " + cbSServerIP.Text + " -port " + tbSServerPort.Text + " +dota_force_gamemode " + dotaGameMode + " +maxplayers " + cbSMaxPlayers.Text + " +map " + dotaMap;
             dotaProcess.StartInfo.WorkingDirectory = workingDir;
             dotaProcess.Start();
         }
@@ -409,7 +429,7 @@ namespace idreamDotA2Tool
         private void btnAbout_Click(object sender, EventArgs e)
         {
             MessageBox.Show("如有任何BUG请反馈。本工具严禁用于互联网，仅供局域网练习，转载请注明出处。\n\n" +
-                            "本工具在Github上开源，请自行搜索。\n\n" +
+                            //"本工具在Github上开源，请自行搜索。\n\n" +
                             //"github.com/idreamshen/idreamDotA2LanTool\n\n" +
                             "Mail: idream.shen@gmail.com\n" +
                             //"Wechat: idreamshen\n" +
@@ -544,18 +564,69 @@ namespace idreamDotA2Tool
 
         private void tbCServerIP_TextChanged(object sender, EventArgs e)
         {
-            FileStream fsConnectCfg = new FileStream(ini.lPath + "\\dota\\cfg\\connect.cfg", FileMode.OpenOrCreate);
-            StreamWriter swConnectCfg = new StreamWriter(fsConnectCfg);
-            swConnectCfg.WriteLine("connect " + tbCServerIP.Text + ":" + tbCServerPort.Text);
-            swConnectCfg.Close();
+            if (File.Exists(ini.lPath + "\\dota.exe"))
+            {
+                FileStream fsConnectCfg = new FileStream(ini.lPath + "\\dota\\cfg\\connect.cfg", FileMode.OpenOrCreate);
+                StreamWriter swConnectCfg = new StreamWriter(fsConnectCfg);
+                swConnectCfg.WriteLine("connect " + tbCServerIP.Text + ":" + tbCServerPort.Text);
+                swConnectCfg.Close();
+            }
         }
 
         private void tbCServerPort_TextChanged(object sender, EventArgs e)
         {
-            FileStream fsConnectCfg = new FileStream(ini.lPath + "\\dota\\cfg\\connect.cfg", FileMode.OpenOrCreate);
-            StreamWriter swConnectCfg = new StreamWriter(fsConnectCfg);
-            swConnectCfg.WriteLine("connect " + tbCServerIP.Text + ":" + tbCServerPort.Text);
-            swConnectCfg.Close();
+            if (File.Exists(ini.lPath + "\\dota.exe"))
+            {
+                FileStream fsConnectCfg = new FileStream(ini.lPath + "\\dota\\cfg\\connect.cfg", FileMode.OpenOrCreate);
+                StreamWriter swConnectCfg = new StreamWriter(fsConnectCfg);
+                swConnectCfg.WriteLine("connect " + tbCServerIP.Text + ":" + tbCServerPort.Text);
+                swConnectCfg.Close();
+            }
+        }
+
+        // 切换“开启观战”
+        private void cbSSourceTV_TextChanged(object sender, EventArgs e)
+        {
+            if (cbSSourceTV.Text == "是")
+            {
+                tbSourceTVPort.Enabled = true;
+                cbSSourceTVMaxClients.Enabled = true;
+                cbSSourceTVDelay.Enabled = true;
+                cbSSourceTVAutorecord.Enabled = true;
+            }
+            else
+            {
+                tbSourceTVPort.Enabled = false;
+                cbSSourceTVMaxClients.Enabled = false;
+                cbSSourceTVDelay.Enabled = false;
+                cbSSourceTVAutorecord.Enabled = false;
+            }
+        }
+
+        private void btnCJoinTeamTV_Click(object sender, EventArgs e)
+        {
+            IntPtr myIntPtr = FindWindow("Valve001", "DotA 2");
+            ShowWindow(myIntPtr, SW_RESTORE);
+            SetForegroundWindow(myIntPtr);
+            System.Threading.Thread.Sleep(300);
+
+            keybd_event(220, 0x2b, 0X0, 0);
+            keybd_event(220, 0xab, 0X2, 0);
+            System.Threading.Thread.Sleep(1000);
+
+            byte[] ch = (ASCIIEncoding.ASCII.GetBytes("connect " + tbCServerIP.Text + ":" + tbCServerTVPort.Text));
+            for (int i = 0; i < ch.Length; i++)
+            {
+                SendMessage(myIntPtr, WM_CHAR, ch[i], 0);
+            }
+            SendKeys.Send("{ENTER}");
+            System.Threading.Thread.Sleep(1000);
+            ch = (ASCIIEncoding.ASCII.GetBytes("hideconsole"));
+            for (int i = 0; i < ch.Length; i++)
+            {
+                SendMessage(myIntPtr, WM_CHAR, ch[i], 0);
+            }
+            SendKeys.Send("{ENTER}");
         }
     }
 }

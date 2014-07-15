@@ -64,11 +64,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.gbClient = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnCJoinTeamBad = new System.Windows.Forms.Button();
-            this.btnCJoinTeamTV = new System.Windows.Forms.Button();
-            this.btnCJoinTeamGood = new System.Windows.Forms.Button();
-            this.btnCAddBot = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnCJoinServer = new System.Windows.Forms.Button();
             this.tbCServerIP = new System.Windows.Forms.TextBox();
@@ -80,14 +75,19 @@
             this.labelCPlayerName = new System.Windows.Forms.Label();
             this.labelCServerPort = new System.Windows.Forms.Label();
             this.labelCServerTVPort = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnCJoinTeamBad = new System.Windows.Forms.Button();
+            this.btnCJoinTeamTV = new System.Windows.Forms.Button();
+            this.btnCJoinTeamGood = new System.Windows.Forms.Button();
+            this.btnCAddBot = new System.Windows.Forms.Button();
             this.lblVersion = new System.Windows.Forms.Label();
             this.btnAbout = new System.Windows.Forms.Button();
             this.gbServer.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbServerGame.SuspendLayout();
             this.gbClient.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbServer
@@ -134,7 +134,6 @@
             // cbSSourceTVAutorecord
             // 
             this.cbSSourceTVAutorecord.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSSourceTVAutorecord.Enabled = false;
             this.cbSSourceTVAutorecord.FormattingEnabled = true;
             this.cbSSourceTVAutorecord.Location = new System.Drawing.Point(89, 157);
             this.cbSSourceTVAutorecord.Name = "cbSSourceTVAutorecord";
@@ -144,7 +143,6 @@
             // cbSSourceTVDelay
             // 
             this.cbSSourceTVDelay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSSourceTVDelay.Enabled = false;
             this.cbSSourceTVDelay.FormattingEnabled = true;
             this.cbSSourceTVDelay.Location = new System.Drawing.Point(89, 126);
             this.cbSSourceTVDelay.Name = "cbSSourceTVDelay";
@@ -154,7 +152,6 @@
             // cbSSourceTVMaxClients
             // 
             this.cbSSourceTVMaxClients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSSourceTVMaxClients.Enabled = false;
             this.cbSSourceTVMaxClients.FormattingEnabled = true;
             this.cbSSourceTVMaxClients.Location = new System.Drawing.Point(89, 95);
             this.cbSSourceTVMaxClients.Name = "cbSSourceTVMaxClients";
@@ -164,12 +161,12 @@
             // cbSSourceTV
             // 
             this.cbSSourceTV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSSourceTV.Enabled = false;
             this.cbSSourceTV.FormattingEnabled = true;
             this.cbSSourceTV.Location = new System.Drawing.Point(89, 32);
             this.cbSSourceTV.Name = "cbSSourceTV";
             this.cbSSourceTV.Size = new System.Drawing.Size(100, 20);
             this.cbSSourceTV.TabIndex = 2;
+            this.cbSSourceTV.TextChanged += new System.EventHandler(this.cbSSourceTV_TextChanged);
             // 
             // label12
             // 
@@ -200,7 +197,6 @@
             // 
             // tbSourceTVPort
             // 
-            this.tbSourceTVPort.Enabled = false;
             this.tbSourceTVPort.Location = new System.Drawing.Point(89, 63);
             this.tbSourceTVPort.Name = "tbSourceTVPort";
             this.tbSourceTVPort.Size = new System.Drawing.Size(100, 21);
@@ -265,7 +261,6 @@
             // cbSGameMap
             // 
             this.cbSGameMap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSGameMap.Enabled = false;
             this.cbSGameMap.FormattingEnabled = true;
             this.cbSGameMap.Location = new System.Drawing.Point(94, 94);
             this.cbSGameMap.Name = "cbSGameMap";
@@ -437,67 +432,13 @@
             // 
             // gbClient
             // 
-            this.gbClient.Controls.Add(this.groupBox3);
             this.gbClient.Controls.Add(this.groupBox2);
             this.gbClient.Location = new System.Drawing.Point(12, 294);
             this.gbClient.Name = "gbClient";
-            this.gbClient.Size = new System.Drawing.Size(605, 181);
+            this.gbClient.Size = new System.Drawing.Size(393, 181);
             this.gbClient.TabIndex = 1;
             this.gbClient.TabStop = false;
             this.gbClient.Text = "局域网客户端设置";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.btnCJoinTeamBad);
-            this.groupBox3.Controls.Add(this.btnCJoinTeamTV);
-            this.groupBox3.Controls.Add(this.btnCJoinTeamGood);
-            this.groupBox3.Controls.Add(this.btnCAddBot);
-            this.groupBox3.Location = new System.Drawing.Point(399, 25);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 144);
-            this.groupBox3.TabIndex = 15;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "快捷按钮";
-            // 
-            // btnCJoinTeamBad
-            // 
-            this.btnCJoinTeamBad.Location = new System.Drawing.Point(103, 31);
-            this.btnCJoinTeamBad.Name = "btnCJoinTeamBad";
-            this.btnCJoinTeamBad.Size = new System.Drawing.Size(89, 34);
-            this.btnCJoinTeamBad.TabIndex = 11;
-            this.btnCJoinTeamBad.Text = "加入夜魇";
-            this.btnCJoinTeamBad.UseVisualStyleBackColor = true;
-            this.btnCJoinTeamBad.Click += new System.EventHandler(this.btnCJoinTeamBad_Click);
-            // 
-            // btnCJoinTeamTV
-            // 
-            this.btnCJoinTeamTV.Enabled = false;
-            this.btnCJoinTeamTV.Location = new System.Drawing.Point(103, 86);
-            this.btnCJoinTeamTV.Name = "btnCJoinTeamTV";
-            this.btnCJoinTeamTV.Size = new System.Drawing.Size(89, 34);
-            this.btnCJoinTeamTV.TabIndex = 13;
-            this.btnCJoinTeamTV.Text = "加入观战";
-            this.btnCJoinTeamTV.UseVisualStyleBackColor = true;
-            // 
-            // btnCJoinTeamGood
-            // 
-            this.btnCJoinTeamGood.Location = new System.Drawing.Point(8, 31);
-            this.btnCJoinTeamGood.Name = "btnCJoinTeamGood";
-            this.btnCJoinTeamGood.Size = new System.Drawing.Size(89, 34);
-            this.btnCJoinTeamGood.TabIndex = 10;
-            this.btnCJoinTeamGood.Text = "加入天辉";
-            this.btnCJoinTeamGood.UseVisualStyleBackColor = true;
-            this.btnCJoinTeamGood.Click += new System.EventHandler(this.btnCJoinTeamGood_Click);
-            // 
-            // btnCAddBot
-            // 
-            this.btnCAddBot.Location = new System.Drawing.Point(8, 86);
-            this.btnCAddBot.Name = "btnCAddBot";
-            this.btnCAddBot.Size = new System.Drawing.Size(89, 34);
-            this.btnCAddBot.TabIndex = 12;
-            this.btnCAddBot.Text = "填充AI";
-            this.btnCAddBot.UseVisualStyleBackColor = true;
-            this.btnCAddBot.Click += new System.EventHandler(this.btnCAddBot_Click);
             // 
             // groupBox2
             // 
@@ -513,7 +454,7 @@
             this.groupBox2.Controls.Add(this.labelCServerTVPort);
             this.groupBox2.Location = new System.Drawing.Point(6, 25);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(387, 144);
+            this.groupBox2.Size = new System.Drawing.Size(381, 144);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "基本设置";
@@ -550,7 +491,6 @@
             // 
             // tbCServerTVPort
             // 
-            this.tbCServerTVPort.Enabled = false;
             this.tbCServerTVPort.Location = new System.Drawing.Point(92, 78);
             this.tbCServerTVPort.Name = "tbCServerTVPort";
             this.tbCServerTVPort.Size = new System.Drawing.Size(100, 21);
@@ -613,6 +553,59 @@
             this.labelCServerTVPort.TabIndex = 6;
             this.labelCServerTVPort.Text = "观战端口*";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnCJoinTeamBad);
+            this.groupBox3.Controls.Add(this.btnCJoinTeamTV);
+            this.groupBox3.Controls.Add(this.btnCJoinTeamGood);
+            this.groupBox3.Controls.Add(this.btnCAddBot);
+            this.groupBox3.Location = new System.Drawing.Point(411, 294);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(207, 181);
+            this.groupBox3.TabIndex = 15;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "快捷按钮";
+            // 
+            // btnCJoinTeamBad
+            // 
+            this.btnCJoinTeamBad.Location = new System.Drawing.Point(101, 56);
+            this.btnCJoinTeamBad.Name = "btnCJoinTeamBad";
+            this.btnCJoinTeamBad.Size = new System.Drawing.Size(89, 34);
+            this.btnCJoinTeamBad.TabIndex = 11;
+            this.btnCJoinTeamBad.Text = "加入夜魇";
+            this.btnCJoinTeamBad.UseVisualStyleBackColor = true;
+            this.btnCJoinTeamBad.Click += new System.EventHandler(this.btnCJoinTeamBad_Click);
+            // 
+            // btnCJoinTeamTV
+            // 
+            this.btnCJoinTeamTV.Location = new System.Drawing.Point(101, 111);
+            this.btnCJoinTeamTV.Name = "btnCJoinTeamTV";
+            this.btnCJoinTeamTV.Size = new System.Drawing.Size(89, 34);
+            this.btnCJoinTeamTV.TabIndex = 13;
+            this.btnCJoinTeamTV.Text = "加入观战";
+            this.btnCJoinTeamTV.UseVisualStyleBackColor = true;
+            this.btnCJoinTeamTV.Click += new System.EventHandler(this.btnCJoinTeamTV_Click);
+            // 
+            // btnCJoinTeamGood
+            // 
+            this.btnCJoinTeamGood.Location = new System.Drawing.Point(6, 56);
+            this.btnCJoinTeamGood.Name = "btnCJoinTeamGood";
+            this.btnCJoinTeamGood.Size = new System.Drawing.Size(89, 34);
+            this.btnCJoinTeamGood.TabIndex = 10;
+            this.btnCJoinTeamGood.Text = "加入天辉";
+            this.btnCJoinTeamGood.UseVisualStyleBackColor = true;
+            this.btnCJoinTeamGood.Click += new System.EventHandler(this.btnCJoinTeamGood_Click);
+            // 
+            // btnCAddBot
+            // 
+            this.btnCAddBot.Location = new System.Drawing.Point(6, 111);
+            this.btnCAddBot.Name = "btnCAddBot";
+            this.btnCAddBot.Size = new System.Drawing.Size(89, 34);
+            this.btnCAddBot.TabIndex = 12;
+            this.btnCAddBot.Text = "填充AI";
+            this.btnCAddBot.UseVisualStyleBackColor = true;
+            this.btnCAddBot.Click += new System.EventHandler(this.btnCAddBot_Click);
+            // 
             // lblVersion
             // 
             this.lblVersion.Location = new System.Drawing.Point(467, 479);
@@ -637,6 +630,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(630, 500);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.gbClient);
@@ -654,9 +648,9 @@
             this.gbServerGame.ResumeLayout(false);
             this.gbServerGame.PerformLayout();
             this.gbClient.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

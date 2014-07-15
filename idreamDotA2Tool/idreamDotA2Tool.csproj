@@ -74,7 +74,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -86,7 +85,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="20140430041429159_easyicon_net_72.ico" />
     <Content Include="www.ico.la_15_128X128_1405255181.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
